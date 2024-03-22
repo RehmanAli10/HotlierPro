@@ -1,12 +1,14 @@
 import styled from "styled-components";
+
 import { formatCurrency } from "../../utils/helpers";
-import { useState } from "react";
 import CreateCabinForm from "./CreateCabinForm";
 import { useDeleteCabin } from "./useDeleteCabin";
 import { HiDuplicate } from "react-icons/hi";
 import { MdModeEditOutline } from "react-icons/md";
 import { RiDeleteBin6Fill } from "react-icons/ri";
 import { useCreateCabin } from "./useCreateCabin";
+import Modal from "../../ui/Modal";
+import ConfirmDelete from "../../ui/ConfirmDelete";
 
 const TableRow = styled.div`
   display: grid;
@@ -49,7 +51,6 @@ const Discount = styled.div`
 `;
 
 function CabinRow({ cabin }) {
-  const [showForm, setShowForm] = useState(false);
   const { isDeleting, deleteCabin } = useDeleteCabin();
   const { isCreating: isDuplicating, createCabin: duplicateCabin } =
     useCreateCabin();
@@ -76,31 +77,48 @@ function CabinRow({ cabin }) {
   }
 
   return (
-    <>
-      <TableRow role="row">
-        <Img src={image} />
-        <Cabin>{name}</Cabin>
-        <div>Fits up to {maxCapacity} guests</div>
-        <Price>{formatCurrency(regularPrice)}</Price>
-        {discount ? (
-          <Discount>{formatCurrency(discount)}</Discount>
-        ) : (
-          <span>&mdash;</span>
-        )}
-        <div>
-          <button disabled={isDuplicating} onClick={hanldeDuplicate}>
-            <HiDuplicate />
-          </button>
-          <button onClick={() => setShowForm((show) => !show)}>
-            <MdModeEditOutline />
-          </button>
-          <button onClick={() => deleteCabin(cabinId)} disabled={isDeleting}>
-            <RiDeleteBin6Fill />
-          </button>
-        </div>
-      </TableRow>
-      {showForm && <CreateCabinForm cabinToEdit={cabin} />}
-    </>
+    <TableRow role="row">
+      <Img src={image} />
+      <Cabin>{name}</Cabin>
+      <div>Fits up to {maxCapacity} guests</div>
+      <Price>{formatCurrency(regularPrice)}</Price>
+      {discount ? (
+        <Discount>{formatCurrency(discount)}</Discount>
+      ) : (
+        <span>&mdash;</span>
+      )}
+      <div>
+        <button disabled={isDuplicating} onClick={hanldeDuplicate}>
+          <HiDuplicate />
+        </button>
+
+        <Modal>
+          <Modal.Open opens={"edit"}>
+            <button>
+              <MdModeEditOutline />
+            </button>
+          </Modal.Open>
+
+          <Modal.Window name={"edit"}>
+            <CreateCabinForm cabinToEdit={cabin} />
+          </Modal.Window>
+
+          <Modal.Open opens={"delete"}>
+            <button>
+              <RiDeleteBin6Fill />
+            </button>
+          </Modal.Open>
+
+          <Modal.Window name={"delete"}>
+            <ConfirmDelete
+              resource={"cabins"}
+              disabled={isDeleting}
+              onConfirm={() => deleteCabin(cabinId)}
+            />
+          </Modal.Window>
+        </Modal>
+      </div>
+    </TableRow>
   );
 }
 
