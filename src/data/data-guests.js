@@ -1,47 +1,45 @@
 // Search for: 'jo', 'fa', 'mar', 'emm', 'ah'
 
-// GPT generated
-
 export const guests = [
   {
     // id: 1000,
-    fullName: "Rehman Ali",
-    email: "hello@rehman.io",
+    fullName: "Cristiano Ronaldo",
+    email: "hello@cr7.io",
     nationality: "Portugal",
     nationalID: "3525436345",
-    countryFlag: "https://flagcdn.com/pk.svg",
+    countryFlag: "https://flagcdn.com/pt.svg",
   },
   {
-    fullName: "Sultan Ali",
-    email: "johnsmith@test.eu",
+    fullName: "Rice",
+    email: "Rice@test.eu",
     nationality: "Great Britain",
     nationalID: "4534593454",
     countryFlag: "https://flagcdn.com/gb.svg",
   },
   {
-    fullName: "Wasama Pasha",
-    email: "jonatan@example.com",
+    fullName: "Litman",
+    email: "Litman@example.com",
     nationality: "Finland",
     nationalID: "9374074454",
     countryFlag: "https://flagcdn.com/fi.svg",
   },
   {
-    fullName: "Jonas Mueller",
-    email: "jonas@example.eu",
+    fullName: "Muller",
+    email: "Muller@example.eu",
     nationality: "Germany",
     nationalID: "1233212288",
     countryFlag: "https://flagcdn.com/de.svg",
   },
   {
-    fullName: "Jonas Anderson",
-    email: "anderson@example.com",
+    fullName: "Essien",
+    email: "essien@example.com",
     nationality: "Bolivia (Plurinational State of)",
     nationalID: "0988520146",
     countryFlag: "https://flagcdn.com/bo.svg",
   },
   {
-    fullName: "Jonathan Williams",
-    email: "jowi@gmail.com",
+    fullName: "George Best",
+    email: "best@gmail.com",
     nationality: "United States of America",
     nationalID: "633678543",
     countryFlag: "https://flagcdn.com/us.svg",
