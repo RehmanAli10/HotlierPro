@@ -45,6 +45,8 @@ const Amount = styled.div`
 `;
 
 function BookingRow({ booking }) {
+  const navigate = useNavigate();
+
   const {
     id: bookingId,
     created_at,
@@ -57,8 +59,6 @@ function BookingRow({ booking }) {
     guests: { fullName: guestName, email },
     cabins: { name: cabinName },
   } = booking;
-
-  const navigate = useNavigate();
 
   const statusToTagName = {
     unconfirmed: "blue",
