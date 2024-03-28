@@ -15,6 +15,7 @@ import ConfirmDelete from "../../ui/ConfirmDelete";
 
 import { formatCurrency } from "../../utils/helpers";
 import { formatDistanceFromNow } from "../../utils/helpers";
+import { useNavigate } from "react-router-dom";
 
 const Cabin = styled.div`
   font-size: 1.6rem;
@@ -57,6 +58,8 @@ function BookingRow({ booking }) {
     cabins: { name: cabinName },
   } = booking;
 
+  const navigate = useNavigate();
+
   const statusToTagName = {
     unconfirmed: "blue",
     "checked-in": "green",
@@ -93,7 +96,12 @@ function BookingRow({ booking }) {
         <Menus.Menu>
           <Menus.Toggle id={bookingId} />
           <Menus.List id={bookingId}>
-            <Menus.Button icon={<HiEye />}>See details</Menus.Button>
+            <Menus.Button
+              icon={<HiEye />}
+              onClick={() => navigate(`/bookings/${bookingId}`)}
+            >
+              See details
+            </Menus.Button>
 
             {status === "unconfirmed" && (
               <Menus.Button icon={<HiArrowDownOnSquare />}>
