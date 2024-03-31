@@ -60,6 +60,8 @@ function BookingRow({ booking }) {
     cabins: { name: cabinName },
   } = booking;
 
+  console.log(status);
+
   const statusToTagName = {
     unconfirmed: "blue",
     "checked-in": "green",
