@@ -16,6 +16,8 @@ import ConfirmDelete from "../../ui/ConfirmDelete";
 import { formatCurrency } from "../../utils/helpers";
 import { formatDistanceFromNow } from "../../utils/helpers";
 import { useNavigate } from "react-router-dom";
+import { useCheckout } from "../check-in-out/useCheckout";
+import { useDeleteBooking } from "./useDeleteBooking";
 
 const Cabin = styled.div`
   font-size: 1.6rem;
@@ -60,7 +62,8 @@ function BookingRow({ booking }) {
     cabins: { name: cabinName },
   } = booking;
 
-  console.log(status);
+  const { checkout, isCheckingOut } = useCheckout();
+  const { deleteBooking, isDeletingBooking } = useDeleteBooking();
 
   const statusToTagName = {
     unconfirmed: "blue",
@@ -115,7 +118,11 @@ function BookingRow({ booking }) {
             )}
 
             {status === "checked-in" && (
-              <Menus.Button icon={<HiArrowUpOnSquare />}>
+              <Menus.Button
+                icon={<HiArrowUpOnSquare />}
+                onClick={() => checkout(bookingId)}
+                disabled={isCheckingOut}
+              >
                 Check out
               </Menus.Button>
             )}
@@ -127,7 +134,11 @@ function BookingRow({ booking }) {
         </Menus.Menu>
 
         <Modal.Window name="delete">
-          <ConfirmDelete resourceName="booking" />
+          <ConfirmDelete
+            resourceName="booking"
+            disabled={isDeletingBooking}
+            onConfirm={() => deleteBooking(bookingId)}
+          />
         </Modal.Window>
       </Modal>
     </Table.Row>
