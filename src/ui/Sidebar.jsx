@@ -21,7 +21,7 @@ function Sidebar() {
       <MainNav />
 
       {/* FOR DEVELOPMENT PURPOSES */}
-      <Uploader />
+      {/* <Uploader /> */}
     </StyledSidebar>
   );
 }
