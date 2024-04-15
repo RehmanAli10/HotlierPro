@@ -16,6 +16,7 @@ import { HiArrowUpOnSquare } from "react-icons/hi2";
 import Modal from "../../ui/Modal";
 import ConfirmDelete from "../../ui/ConfirmDelete";
 import { useDeleteBooking } from "./useDeleteBooking";
+import Empty from "../../ui/Empty";
 
 const HeadingGroup = styled.div`
   display: flex;
@@ -33,6 +34,8 @@ function BookingDetail() {
 
   if (isLoading) return <Spinner />;
 
+  if (!booking) return <Empty resourceName={"booking"} />;
+
   const { status, id: bookingId } = booking;
 
   const statusToTagName = {
@@ -48,7 +51,6 @@ function BookingDetail() {
           <Heading type="h1">Booking #{bookingId}</Heading>
           <Tag type={statusToTagName[status]}>{status.replace("-", " ")}</Tag>
         </HeadingGroup>
-        {/* <ButtonText onClick={moveBack}>&larr; Back</ButtonText> */}
       </Row>
 
       <BookingDataBox booking={booking} />
