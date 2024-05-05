@@ -83,7 +83,11 @@ function CabinRow({ cabin }) {
             <Menus.Toggle id={cabinId} />
 
             <Menus.List id={cabinId}>
-              <Menus.Button icon={<HiDuplicate />} onClick={hanldeDuplicate}>
+              <Menus.Button
+                icon={<HiDuplicate />}
+                onClick={hanldeDuplicate}
+                disabled={isDuplicating}
+              >
                 Duplicate
               </Menus.Button>
 

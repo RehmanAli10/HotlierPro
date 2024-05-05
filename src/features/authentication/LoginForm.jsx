@@ -34,7 +34,6 @@ function LoginForm() {
         <Input
           type="email"
           id="email"
-          // used by password managers which makes it look better
           autoComplete="username"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
